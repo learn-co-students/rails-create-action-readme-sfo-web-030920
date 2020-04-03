@@ -12,4 +12,13 @@ class PostsController < ApplicationController
   end
 
   # add create method here
+  def create
+    params.inspect
+    @post = Post.new(title: params["title"], description: params["description"])
+    if @post.save
+      redirect_to post_path(@post)
+    else
+      render :new
+    end
+  end
 end
